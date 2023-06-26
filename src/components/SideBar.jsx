@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaHome, FaInfoCircle, FaEnvelope, FaCube, FaChartBar } from 'react-icons/fa';
 
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   const handleToggleCollapse = () => {
     setCollapsed(!collapsed);
