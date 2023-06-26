@@ -10,8 +10,8 @@ const TransactionList = () => {
 
   const [newTransactionTitle, setNewTransactionTitle] = useState('');
   const [newTransactionAmount, setNewTransactionAmount] = useState('');
+  const [error, setError] = useState('');
 
-  // Calculate total incoming and outgoing amounts
   const totalIncoming = transactions
     .filter((transaction) => transaction.amount > 0)
     .reduce((total, transaction) => total + transaction.amount, 0);
@@ -22,17 +22,31 @@ const TransactionList = () => {
 
   const handleTitleChange = (e) => {
     setNewTransactionTitle(e.target.value);
+    setError('');
   };
 
   const handleAmountChange = (e) => {
     setNewTransactionAmount(e.target.value);
+    setError('');
   };
 
   const addTransaction = () => {
+    if (newTransactionTitle.trim() === '' || newTransactionAmount.trim() === '') {
+      setError('Please enter a valid title and amount.');
+      return;
+    }
+
+    const newAmount = Number(newTransactionAmount);
+
+    if (isNaN(newAmount)) {
+      setError('Please enter a valid number for the amount.');
+      return;
+    }
+
     const newTransaction = {
       id: transactions.length + 1,
       title: newTransactionTitle,
-      amount: Number(newTransactionAmount),
+      amount: newAmount,
     };
 
     setTransactions([...transactions, newTransaction]);
@@ -106,6 +120,7 @@ const TransactionList = () => {
 
       <div className="text-center">
         <h2 className="text-2xl font-bold mb-4">Add New Transaction</h2>
+        {error && <div className="text-red-500 mb-2">{error}</div>}
         <div className="flex items-center justify-center gap-4">
           <input
             type="text"
