@@ -9,7 +9,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className={`bg-gray-800 h-screen ${collapsed ? 'w-16' : 'w-48'} fixed top-24 left-0 flex flex-col items-center transition-all duration-300`}>
+    <div className={`bg-gray-800 h-screen ${collapsed ? 'w-16' : 'w-45'} fixed top-24 left-0 flex flex-col items-center transition-all duration-300`}>
       <button
         className="text-white p-4 focus:outline-none hover:bg-gray-700"
         onClick={handleToggleCollapse}
