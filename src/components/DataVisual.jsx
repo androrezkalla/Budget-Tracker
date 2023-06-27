@@ -1,6 +1,9 @@
 import React from 'react';
 import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar, PieChart, Pie, Cell } from 'recharts';
 
+// Using react library called recharts to visualize the dats for the users
+// Might need to npm install the dependencies for it to run properly
+
 const DataVisual = ({ transactions }) => {
   // Calculate total incoming and outgoing amounts
   const totalIncoming = transactions

@@ -5,7 +5,7 @@ const TransactionForm = ({ transaction, updateTransaction, onCancelEdit }) => {
   const [amount, setAmount] = useState(transaction.amount);
 
   const handleTitleChange = (e) => {
-    setTitle(e.target.value); // Update the title with the new value
+    setTitle(e.target.value); 
   };
 
   const handleAmountChange = (e) => {
