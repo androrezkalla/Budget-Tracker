@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import DataVisual from './DataVisual';
+import TransactionForm from './TransactionForm';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const TransactionList = () => {
   const [transactions, setTransactions] = useState([
@@ -12,14 +14,15 @@ const TransactionList = () => {
   const [newTransactionTitle, setNewTransactionTitle] = useState('');
   const [newTransactionAmount, setNewTransactionAmount] = useState('');
   const [error, setError] = useState('');
+  const [editTransaction, setEditTransaction] = useState(null);
 
   const totalIncoming = transactions
-    .filter((transaction) => transaction.amount > 0)
-    .reduce((total, transaction) => total + transaction.amount, 0);
+  .filter((transaction) => transaction.amount > 0)
+  .reduce((total, transaction) => total + Number(transaction.amount), 0);
 
-  const totalOutgoing = transactions
-    .filter((transaction) => transaction.amount < 0)
-    .reduce((total, transaction) => total + transaction.amount, 0);
+const totalOutgoing = transactions
+  .filter((transaction) => transaction.amount < 0)
+  .reduce((total, transaction) => total + Number(transaction.amount), 0);
 
   const handleTitleChange = (e) => {
     setNewTransactionTitle(e.target.value);
@@ -62,11 +65,50 @@ const TransactionList = () => {
     setTransactions(updatedTransactions);
   };
 
+  const editTransactionItem = (transaction) => {
+    setEditTransaction(transaction);
+  };
+
+  const cancelEdit = () => {
+    setEditTransaction(null);
+  };
+  
+
+  const updateTransaction = (updatedTransaction) => {
+    const updatedTransactions = transactions.map((transaction) => {
+      if (transaction.id === updatedTransaction.id) {
+        const amountDifference = updatedTransaction.amount - transaction.amount;
+  
+        if (amountDifference > 0) {
+          // Updated amount is greater than the original amount
+          return {
+            ...transaction,
+            title: updatedTransaction.title,
+            amount: updatedTransaction.amount,
+          };
+        } else if (amountDifference < 0) {
+          // Updated amount is less than the original amount
+          const updatedAmount = transaction.amount - Math.abs(amountDifference);
+          return {
+            ...transaction,
+            title: updatedTransaction.title,
+            amount: updatedAmount,
+          };
+        }
+      }
+      return transaction;
+    });
+  
+    setTransactions(updatedTransactions);
+    setEditTransaction(null); // Clear the edit transaction state after updating
+  };
+  
+
   return (
     <div className="mx-auto p-12 bg-gray-800 text-white rounded shadow-2xl ml-12">
       <div className="mb-6">
         <h2 className="text-xl font-bold">Transactions</h2>
-        <div className="flex justify-between mt-4"> {/* Increased margin-top here */}
+        <div className="flex justify-between mt-4">
           <div className="text-green-500">
             <div className="text-lg font-bold">Total Incoming</div>
             <div className="text-2xl font-bold">{totalIncoming}</div>
@@ -91,6 +133,7 @@ const TransactionList = () => {
           <tr>
             <th className="bg-gray-700 px-4 py-2">Title</th>
             <th className="bg-gray-700 px-4 py-2">Amount</th>
+            <th className="bg-gray-700 px-4 py-2">Edit</th>
             <th className="bg-gray-700 px-4 py-2">Delete</th>
           </tr>
         </thead>
@@ -107,13 +150,23 @@ const TransactionList = () => {
               </td>
               <td className="px-4 py-2">
                 <span
-                  className="delete-icon cursor-pointer"
+                  className="delete-icon cursor-pointer flex justify-center items-center"
+                  role="button"
+                  onClick={() => editTransactionItem(transaction)}
+                >
+                  <FaEdit size={18}/>
+                </span>
+              </td>
+              <td className="px-4 py-2">
+                <span
+                  className="delete-icon cursor-pointer flex justify-center items-center"
                   role="button"
                   onClick={() => deleteTransaction(transaction.id)}
                 >
-                  🗑
+                  <FaTrash size={18}/>
                 </span>
               </td>
+            
             </tr>
           ))}
         </tbody>
@@ -145,9 +198,17 @@ const TransactionList = () => {
           </button>
         </div>
       </div>
-      <div className="mx-auto p-8 bg-gray-800 text-white rounded justify-center text-center shadow-2xl mt-8"> {/* Increased margin-top here */}
+      <div className="mx-auto p-8 bg-gray-800 text-white rounded justify-center text-center shadow-2xl mt-8">
         <DataVisual transactions={transactions} />
       </div>
+
+      {editTransaction && (
+        <TransactionForm
+          transaction={editTransaction}
+          updateTransaction={updateTransaction}
+          onCancelEdit={cancelEdit}
+        />
+      )}
     </div>
   );
 };

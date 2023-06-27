@@ -8,7 +8,7 @@ function App() {
     <div className="flex flex-col h-screen">
       <Banner />
       <div className="flex-1 overflow-y-auto">
-        <main className="container mx-auto py-20 px-20 text-center">
+        <main className="container mx-auto py-20 px-20 text-center back">
           <Sidebar />
           <TransactionList />
         </main>

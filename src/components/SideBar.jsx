@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaHome, FaInfoCircle, FaEnvelope, FaCube, FaChartBar } from 'react-icons/fa';
+import { FaHome, FaInfoCircle, FaEdit, FaChartBar } from 'react-icons/fa';
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(true);
