@@ -9,7 +9,6 @@ function App() {
       <Banner />
       <div className="flex-1 overflow-y-auto">
         <main className="container mx-auto py-20 px-20 text-center">
-          {/* <h1 className="text-5xl py-8 font-bold mb-4 text-white">Budget Tracker</h1> */}
           <Sidebar />
           <TransactionList />
         </main>

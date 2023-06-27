@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DataVisual from './DataVisual';
 
 const TransactionList = () => {
   const [transactions, setTransactions] = useState([
@@ -62,10 +63,10 @@ const TransactionList = () => {
   };
 
   return (
-    <div className="mx-auto p-8 bg-gray-800 text-white rounded">
+    <div className="mx-auto p-8 bg-gray-800 text-white rounded shadow-2xl ml-12">
       <div className="mb-6">
         <h2 className="text-xl font-bold">Transactions</h2>
-        <div className="flex justify-between mt-2">
+        <div className="flex justify-between mt-4"> {/* Increased margin-top here */}
           <div className="text-green-500">
             <div className="text-lg font-bold">Total Incoming</div>
             <div className="text-2xl font-bold">{totalIncoming}</div>
@@ -143,6 +144,9 @@ const TransactionList = () => {
             Add Transaction
           </button>
         </div>
+      </div>
+      <div className="mx-auto p-8 bg-gray-800 text-white rounded justify-center text-center shadow-2xl mt-8"> {/* Increased margin-top here */}
+        <DataVisual transactions={transactions} />
       </div>
     </div>
   );
