@@ -63,7 +63,7 @@ const TransactionList = () => {
   };
 
   return (
-    <div className="mx-auto p-8 bg-gray-800 text-white rounded shadow-2xl ml-12">
+    <div className="mx-auto p-12 bg-gray-800 text-white rounded shadow-2xl ml-12">
       <div className="mb-6">
         <h2 className="text-xl font-bold">Transactions</h2>
         <div className="flex justify-between mt-4"> {/* Increased margin-top here */}
