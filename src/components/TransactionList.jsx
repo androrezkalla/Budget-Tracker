@@ -139,7 +139,7 @@ const TransactionList = () => {
       <table className="w-full mb-6 shadow-2xl rounded-3xl">
         <thead>
           <tr>
-            <th className="bg-gray-700 px-4 py-2">Title</th>
+            <th className="bg-gray-700 px-4 py-2">Transaction</th>
             <th className="bg-gray-700 px-4 py-2">Amount</th>
             <th className="bg-gray-700 px-4 py-2">Edit</th>
             <th className="bg-gray-700 px-4 py-2">Delete</th>
