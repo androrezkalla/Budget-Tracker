@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TransactionForm = ({ transaction, updateTransaction, onCancelEdit }) => {
   const [title, setTitle] = useState(transaction.title);
   const [amount, setAmount] = useState(transaction.amount);
 
   const handleTitleChange = (e) => {
-    setTitle(e.target.value); 
+    setTitle(e.target.value);
   };
 
   const handleAmountChange = (e) => {
@@ -23,6 +23,20 @@ const TransactionForm = ({ transaction, updateTransaction, onCancelEdit }) => {
 
     updateTransaction(updatedTransaction);
   };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      onCancelEdit();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center  bg-black bg-opacity-50 backdrop-blur-sm">
