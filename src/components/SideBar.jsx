@@ -18,11 +18,11 @@ const Sidebar = () => {
       </button>
       {!collapsed && (
         <>
-          <a href="#" className="text-white p-4 hover:bg-gray-700 flex items-center">
+          <a href="/" className="text-white p-4 hover:bg-gray-700 flex items-center">
             <FaHome size={24} />
             <span className="ml-2">Home</span>
           </a>
-          <a href="#" className="text-white p-4 hover:bg-gray-700 flex items-center">
+          <a href="/charts" className="text-white p-4 hover:bg-gray-700 flex items-center">
             <FaChartBar size={24} />
             <span className="ml-2">Statistics</span>
           </a>
@@ -30,10 +30,10 @@ const Sidebar = () => {
       )}
       {collapsed && (
         <>
-          <a href="#" className="text-white p-4 hover:bg-gray-700">
+          <a href="/" className="text-white p-4 hover:bg-gray-700">
             <FaHome size={24} />
           </a>
-          <a href="#" className="text-white p-4 hover:bg-gray-700">
+          <a href="/charts" className="text-white p-4 hover:bg-gray-700">
             <FaChartBar size={24} />
           </a>
         </>

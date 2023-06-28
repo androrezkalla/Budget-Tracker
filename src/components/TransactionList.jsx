@@ -1,7 +1,8 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import DataVisual from './DataVisual';
 import TransactionForm from './TransactionForm';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+
 
 const TransactionList = () => {
   const [transactions, setTransactions] = useState([]);
@@ -218,6 +219,8 @@ const TransactionList = () => {
             Clear Transactions
           </button>
       </div>
+
+      
       <div className="mx-auto p-8 bg-gray-800 text-white rounded-3xl justify-center text-center shadow-2xl mt-8">
         <DataVisual transactions={transactions} />
       </div>
