@@ -94,6 +94,12 @@ const totalOutgoing = transactions
             title: updatedTransaction.title,
             amount: updatedAmount,
           };
+        } else {
+          // No change in amount, update only the title
+          return {
+            ...transaction,
+            title: updatedTransaction.title,
+          };
         }
       }
       return transaction;
@@ -102,6 +108,7 @@ const totalOutgoing = transactions
     setTransactions(updatedTransactions);
     setEditTransaction(null); // Clear the edit transaction state after updating
   };
+  
   
 
   return (
