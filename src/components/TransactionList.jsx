@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import DataVisual from './DataVisual';
 import TransactionForm from './TransactionForm';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const TransactionList = () => {
-  const [transactions, setTransactions] = useState([
-    { id: 1, title: 'Monthly Salary', amount: 3000 },
-    { id: 2, title: 'Car Payment', amount: -350 },
-    { id: 3, title: 'Rent', amount: -1000 },
-    { id: 4, title: 'Shopping', amount: -250 },
-  ]);
-
+  const [transactions, setTransactions] = useState([]);
   const [newTransactionTitle, setNewTransactionTitle] = useState('');
   const [newTransactionAmount, setNewTransactionAmount] = useState('');
-  const [error, setError] = useState('');
   const [editTransaction, setEditTransaction] = useState(null);
+  const [error, setError] = useState('');
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:3000/transactions'); 
+      const data = await response.json();
+      setTransactions(data);
+    };
+    fetchData();
+  }, []);
+
 
   const totalIncoming = transactions
     .filter((transaction) => transaction.amount > 0)
