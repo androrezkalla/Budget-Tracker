@@ -17,12 +17,12 @@ const TransactionList = () => {
   const [editTransaction, setEditTransaction] = useState(null);
 
   const totalIncoming = transactions
-  .filter((transaction) => transaction.amount > 0)
-  .reduce((total, transaction) => total + Number(transaction.amount), 0);
+    .filter((transaction) => transaction.amount > 0)
+    .reduce((total, transaction) => total + Number(transaction.amount), 0);
 
-const totalOutgoing = transactions
-  .filter((transaction) => transaction.amount < 0)
-  .reduce((total, transaction) => total + Number(transaction.amount), 0);
+  const totalOutgoing = transactions
+    .filter((transaction) => transaction.amount < 0)
+    .reduce((total, transaction) => total + Number(transaction.amount), 0);
 
   const handleTitleChange = (e) => {
     setNewTransactionTitle(e.target.value);
@@ -72,13 +72,12 @@ const totalOutgoing = transactions
   const cancelEdit = () => {
     setEditTransaction(null);
   };
-  
 
   const updateTransaction = (updatedTransaction) => {
     const updatedTransactions = transactions.map((transaction) => {
       if (transaction.id === updatedTransaction.id) {
         const amountDifference = updatedTransaction.amount - transaction.amount;
-  
+
         if (amountDifference > 0) {
           // Updated amount is greater than the original amount
           return {
@@ -104,15 +103,17 @@ const totalOutgoing = transactions
       }
       return transaction;
     });
-  
+
     setTransactions(updatedTransactions);
     setEditTransaction(null); // Clear the edit transaction state after updating
   };
-  
-  
+
+  const clearTransactions = () => {
+    setTransactions([]); // Clear the transactions array
+  };
 
   return (
-    <div className="mx-auto p-12 bg-gray-800 text-white rounded shadow-2xl ml-12">
+    <div className="mx-auto p-12 bg-gray-800 text-white rounded-3xl shadow-2xl ml-12">
       <div className="mb-6">
         <h2 className="text-xl font-bold">Transactions</h2>
         <div className="flex justify-between mt-4">
@@ -135,7 +136,7 @@ const totalOutgoing = transactions
         </div>
       </div>
 
-      <table className="w-full mb-6">
+      <table className="w-full mb-6 shadow-2xl rounded-3xl">
         <thead>
           <tr>
             <th className="bg-gray-700 px-4 py-2">Title</th>
@@ -161,7 +162,7 @@ const totalOutgoing = transactions
                   role="button"
                   onClick={() => editTransactionItem(transaction)}
                 >
-                  <FaEdit size={18}/>
+                  <FaEdit size={18} />
                 </span>
               </td>
               <td className="px-4 py-2">
@@ -170,17 +171,16 @@ const totalOutgoing = transactions
                   role="button"
                   onClick={() => deleteTransaction(transaction.id)}
                 >
-                  <FaTrash size={18}/>
+                  <FaTrash size={18} />
                 </span>
               </td>
-            
             </tr>
           ))}
         </tbody>
       </table>
 
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Add New Transaction</h2>
+        <h2 className="text-2xl font-bold mb-4 mt-10">Add New Transaction</h2>
         {error && <div className="text-red-500 mb-2">{error}</div>}
         <div className="flex items-center justify-center gap-4">
           <input
@@ -205,7 +205,15 @@ const totalOutgoing = transactions
           </button>
         </div>
       </div>
-      <div className="mx-auto p-8 bg-gray-800 text-white rounded justify-center text-center shadow-2xl mt-8">
+      <div>
+      <button
+            onClick={clearTransactions}
+            className="px-4 py-2 mt-10 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Clear Transactions
+          </button>
+      </div>
+      <div className="mx-auto p-8 bg-gray-800 text-white rounded-3xl justify-center text-center shadow-2xl mt-8">
         <DataVisual transactions={transactions} />
       </div>
 
