@@ -35,6 +35,20 @@ The application is deployed on Vercel. You can access it at:
 - View the total incoming, total outgoing, and balance at the top of the page.
 - Visualize transaction data in the charts section.
 
+## Getting Started 
+1. Clone the repository:
+   git clone https://github.com/androrezkalla/Budget-Tracker.git
+   
+2. Install dependencies:
+   cd Budget-Tracker
+   npm install
+
+3. Start the development server:
+   npm run dev
+   
+4. Open your web browser and visit `http://localhost:3000` to view the application.
+
+
 ## License
 
 [MIT License](https://opensource.org/licenses/MIT)
