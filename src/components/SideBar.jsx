@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaHome, FaInfoCircle, FaEdit, FaChartBar } from 'react-icons/fa';
+import { FaHome, FaInfoCircle, FaList, FaChartBar } from 'react-icons/fa';
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -14,7 +14,7 @@ const Sidebar = () => {
         className="text-white p-4 focus:outline-none hover:bg-gray-700"
         onClick={handleToggleCollapse}
       >
-        <FaInfoCircle size={24} />
+        <FaList size={24} />
       </button>
       {!collapsed && (
         <>
@@ -25,6 +25,16 @@ const Sidebar = () => {
           <a href="#" className="text-white p-4 hover:bg-gray-700 flex items-center">
             <FaChartBar size={24} />
             <span className="ml-2">Statistics</span>
+          </a>
+        </>
+      )}
+      {collapsed && (
+        <>
+          <a href="#" className="text-white p-4 hover:bg-gray-700">
+            <FaHome size={24} />
+          </a>
+          <a href="#" className="text-white p-4 hover:bg-gray-700">
+            <FaChartBar size={24} />
           </a>
         </>
       )}
