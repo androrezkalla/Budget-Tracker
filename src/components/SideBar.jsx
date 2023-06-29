@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaHome, FaInfoCircle, FaList, FaChartBar } from 'react-icons/fa';
+import { FaHome, FaDollarSign, FaList, FaChartBar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -23,23 +23,30 @@ const Sidebar = () => {
       </button>
       {!collapsed && (
         <>
-          <Link to="/" className="text-white p-4 hover:bg-gray-700 flex items-center">
+          <Link to="/" className="text-white p-4 hover:bg-gray-700 flex items-center mt-5 mb-5">
             <FaHome size={24} />
             <span className="ml-2">Home</span>
           </Link>
-          <Link to="/charts" className="text-white p-4 hover:bg-gray-700 flex items-center">
+          <Link to="/charts" className="text-white p-4 hover:bg-gray-700 flex items-center mb-5">
             <FaChartBar size={24} />
             <span className="ml-2">Statistics</span>
+          </Link>
+          <Link to="/charts" className="text-white p-4 hover:bg-gray-700 flex items-center mb-5">
+            <FaDollarSign size={24} />
+            <span className="ml-2">Budget</span>
           </Link>
         </>
       )}
       {collapsed && (
         <>
-          <Link to="/" className="text-white p-4 hover:bg-gray-700">
+          <Link to="/" className="text-white p-4 hover:bg-gray-700 mt-5 mb-5">
             <FaHome size={24} />
           </Link>
-          <Link to="/charts" className="text-white p-4 hover:bg-gray-700">
+          <Link to="/charts" className="text-white p-4 hover:bg-gray-700 mb-5">
             <FaChartBar size={24} />
+          </Link>
+          <Link to="/charts" className="text-white p-4 hover:bg-gray-700 mb-5">
+            <FaDollarSign size={24} />
           </Link>
         </>
       )}

@@ -29,6 +29,7 @@ const ChartsPage = () => {
 
   return (
     <div className="mx-auto p-8 bg-gray-800 text-white rounded-3xl justify-center text-center shadow-2xl">
+      <h1 className="text-3xl mb-10 font-bold">Statistics</h1>
       <DataVisual transactions={transactions} />
     </div>
   );

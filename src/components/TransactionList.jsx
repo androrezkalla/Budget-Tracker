@@ -124,7 +124,7 @@ const TransactionList = () => {
   return (
     <div className="mx-auto p-12 bg-gray-800 text-white rounded-3xl shadow-2xl ml-12">
       <div className="mb-6">
-        <h2 className="text-xl font-bold">Transactions</h2>
+        <h1 className="text-3xl mb-10 font-bold">Transactions</h1>
         <div className="flex justify-between mt-4">
           <div className="text-green-500">
             <div className="text-lg font-bold">Total Incoming</div>
