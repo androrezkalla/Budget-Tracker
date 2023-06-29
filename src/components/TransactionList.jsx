@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DataVisual from './DataVisual';
 import TransactionForm from './TransactionForm';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import axios from 'axios';
 
 
 const TransactionList = () => {
@@ -13,13 +14,26 @@ const TransactionList = () => {
 
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://localhost:3000/transactions'); 
-      const data = await response.json();
-      setTransactions(data);
+    const fetchTransactions = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/transactions');
+        const data = response.data;
+        setTransactions(data);
+      } catch (error) {
+        console.error('Error fetching transactions:', error);
+      }
     };
-    fetchData();
+
+    fetchTransactions();
   }, []);
+
+  const updateTransactionsInDatabase = async (updatedTransactions) => {
+    try {
+      await axios.put('http://localhost:3000/transactions', { transactions: updatedTransactions });
+    } catch (error) {
+      console.error('Error updating transactions:', error);
+    }
+  };
 
 
   const totalIncoming = transactions
@@ -40,36 +54,46 @@ const TransactionList = () => {
     setError('');
   };
 
-  const addTransaction = () => {
+  const addTransaction = async () => {
     if (newTransactionTitle.trim() === '' || newTransactionAmount.trim() === '') {
       setError('Please enter a valid title and amount.');
       return;
     }
-
+  
     const newAmount = Number(newTransactionAmount);
-
+  
     if (isNaN(newAmount)) {
       setError('Please enter a valid number for the amount.');
       return;
     }
-
+  
     const newTransaction = {
-      id: transactions.length + 1,
       title: newTransactionTitle,
       amount: newAmount,
     };
-
-    setTransactions([...transactions, newTransaction]);
-    setNewTransactionTitle('');
-    setNewTransactionAmount('');
+  
+    try {
+      const response = await axios.post('http://localhost:3000/transactions', newTransaction);
+      const addedTransaction = response.data;
+      setTransactions([...transactions, addedTransaction]);
+      setNewTransactionTitle('');
+      setNewTransactionAmount('');
+    } catch (error) {
+      console.error('Error adding transaction:', error);
+    }
   };
+  
 
-  const deleteTransaction = (id) => {
-    const updatedTransactions = transactions.filter(
-      (transaction) => transaction.id !== id
-    );
-    setTransactions(updatedTransactions);
+  const deleteTransaction = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/transactions/${id}`);
+      const updatedTransactions = transactions.filter((transaction) => transaction.id !== id);
+      setTransactions(updatedTransactions);
+    } catch (error) {
+      console.error('Error deleting transaction:', error);
+    }
   };
+  
 
   const editTransactionItem = (transaction) => {
     setEditTransaction(transaction);
@@ -79,43 +103,22 @@ const TransactionList = () => {
     setEditTransaction(null);
   };
 
-  const updateTransaction = (updatedTransaction) => {
-    const updatedTransactions = transactions.map((transaction) => {
-      if (transaction.id === updatedTransaction.id) {
-        const amountDifference = updatedTransaction.amount - transaction.amount;
-
-        if (amountDifference > 0) {
-          // Updated amount is greater than the original amount
-          return {
-            ...transaction,
-            title: updatedTransaction.title,
-            amount: updatedTransaction.amount,
-          };
-        } else if (amountDifference < 0) {
-          // Updated amount is less than the original amount
-          const updatedAmount = transaction.amount - Math.abs(amountDifference);
-          return {
-            ...transaction,
-            title: updatedTransaction.title,
-            amount: updatedAmount,
-          };
-        } else {
-          // No change in amount, update only the title
-          return {
-            ...transaction,
-            title: updatedTransaction.title,
-          };
-        }
-      }
-      return transaction;
-    });
-
-    setTransactions(updatedTransactions);
-    setEditTransaction(null); // Clear the edit transaction state after updating
+  const updateTransaction = async (updatedTransaction) => {
+    try {
+      await axios.put(`http://localhost:3000/transactions/${updatedTransaction.id}`, updatedTransaction);
+      const updatedTransactions = transactions.map((transaction) =>
+        transaction.id === updatedTransaction.id ? updatedTransaction : transaction
+      );
+      setTransactions(updatedTransactions);
+      setEditTransaction(null);
+    } catch (error) {
+      console.error('Error updating transaction:', error);
+    }
   };
+  
 
   const clearTransactions = () => {
-    setTransactions([]); // Clear the transactions array
+    setTransactions([]); 
   };
 
   return (
