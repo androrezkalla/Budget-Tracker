@@ -224,9 +224,9 @@ const TransactionList = () => {
       </div>
 
       
-      <div className="mx-auto p-8 bg-gray-800 text-white rounded-3xl justify-center text-center shadow-2xl mt-8">
+      {/* <div className="mx-auto p-8 bg-gray-800 text-white rounded-3xl justify-center text-center shadow-2xl mt-8">
         <DataVisual transactions={transactions} />
-      </div>
+      </div> */}
 
       {editTransaction && (
         <TransactionForm
