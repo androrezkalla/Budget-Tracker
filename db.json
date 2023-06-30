@@ -1,19 +1,19 @@
 {
   "transactions": [
     {
-      "id": 1,
       "title": "Monthly Salary",
-      "amount": 3000
+      "amount": 3500,
+      "id": 1
     },
     {
-      "id": 2,
-      "title": "Car Payment",
-      "amount": -350
-    },
-    {
-      "id": 3,
       "title": "Rent",
-      "amount": -1000
+      "amount": -1000,
+      "id": 2
+    },
+    {
+      "title": "Car Payment",
+      "amount": -350,
+      "id": 3
     }
   ]
 }

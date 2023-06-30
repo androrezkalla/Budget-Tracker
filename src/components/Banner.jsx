@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const Banner = () => {
   return (
     <div className="bg-gray-800 py-2.5">
@@ -10,7 +9,7 @@ const Banner = () => {
           <h1 className="text-white text-4xl font-bold ml-6">BetterBudget</h1>
         </div>
         <nav>
-          <ul className="flex space-x-12 text-2xl">
+          <ul className="flex space-x-12 text-xl">
             <li>
               <a href="#" className="text-white hover:text-gray-300">Home</a>
             </li>

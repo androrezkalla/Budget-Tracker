@@ -117,9 +117,18 @@ const TransactionList = () => {
   };
   
 
-  const clearTransactions = () => {
-    setTransactions([]); 
+  const clearTransactions = async () => {
+    try {
+      for (const transaction of transactions) {
+        await deleteTransaction(transaction.id);
+      }
+      setTransactions([]);
+    } catch (error) {
+      console.error('Error clearing transactions:', error);
+    }
   };
+  
+  
 
   return (
     <div className="mx-auto p-12 bg-gray-800 text-white rounded-3xl shadow-2xl ml-12">

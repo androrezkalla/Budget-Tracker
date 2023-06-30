@@ -26,7 +26,6 @@ function App() {
             <Sidebar />
             <Routes>
               <Route path="/" element={<TransactionList />} />
-              <Route path="/transactions" element={<TransactionList />} />
               <Route path="/charts" element={<ChartsPage transactions={transactions} />} />
             </Routes>
           </main>
