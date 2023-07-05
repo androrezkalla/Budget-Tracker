@@ -31,7 +31,7 @@ const Sidebar = () => {
             <FaChartBar size={24} />
             <span className="ml-2">Statistics</span>
           </Link>
-          <Link to="/charts" className="text-white p-4 hover:bg-gray-700 flex items-center mb-5">
+          <Link to="/budget" className="text-white p-4 hover:bg-gray-700 flex items-center mb-5">
             <FaDollarSign size={24} />
             <span className="ml-2">Budget</span>
           </Link>
@@ -45,7 +45,7 @@ const Sidebar = () => {
           <Link to="/charts" className="text-white p-4 hover:bg-gray-700 mb-5">
             <FaChartBar size={24} />
           </Link>
-          <Link to="/charts" className="text-white p-4 hover:bg-gray-700 mb-5">
+          <Link to="/budget" className="text-white p-4 hover:bg-gray-700 mb-5">
             <FaDollarSign size={24} />
           </Link>
         </>

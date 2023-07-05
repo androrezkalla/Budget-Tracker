@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import TransactionList from './components/TransactionList';
-import Sidebar from './components/SideBar';
-import Banner from './components/Banner';
-import ChartsPage from './components/ChartsPage';
+import Sidebar from './nav/SideBar';
+import Banner from './nav/Banner';
+import ChartsPage from './charts/ChartsPage';
+import BudgetPage from './charts/BudgetPage';
 
 function App() {
   const [transactions, setTransactions] = useState([]);
@@ -27,6 +28,7 @@ function App() {
             <Routes>
               <Route path="/" element={<TransactionList />} />
               <Route path="/charts" element={<ChartsPage transactions={transactions} />} />
+              <Route path="/budget" element={<BudgetPage transactions={transactions}  />} />
             </Routes>
           </main>
         </div>

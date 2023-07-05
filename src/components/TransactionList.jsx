@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import DataVisual from './DataVisual';
 import TransactionForm from './TransactionForm';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import axios from 'axios';

@@ -6,14 +6,19 @@
       "id": 1
     },
     {
-      "title": "Rent",
-      "amount": -1000,
+      "title": "Car payments ",
+      "amount": -500,
       "id": 2
     },
     {
-      "title": "Car Payment",
-      "amount": -350,
+      "title": "Rent",
+      "amount": -1250,
       "id": 3
+    },
+    {
+      "id": 4,
+      "title": "Shopping",
+      "amount": "-250"
     }
   ]
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import DataVisual from './DataVisual';
+import DataVisual from '../components/DataVisual';
 
 const ChartsPage = () => {
   const [transactions, setTransactions] = useState([]);

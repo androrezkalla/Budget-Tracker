@@ -16,9 +16,6 @@ const Banner = () => {
             <li>
               <a href="#" className="text-white hover:text-gray-300">About</a>
             </li>
-            <li>
-              <a href="#" className="text-white hover:text-gray-300">Contact</a>
-            </li>
           </ul>
         </nav>
       </div>
