@@ -1,11 +1,7 @@
 import React from 'react';
 import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar, PieChart, Pie, Cell } from 'recharts';
 
-// Using react library called recharts to visualize the dats for the users
-// Might need to npm install the dependencies for it to run properly
-
 const DataVisual = ({ transactions }) => {
-  // Calculate total incoming and outgoing amounts
   const totalIncoming = transactions
     .filter((transaction) => transaction.amount > 0)
     .reduce((total, transaction) => total + transaction.amount, 0);
@@ -14,19 +10,19 @@ const DataVisual = ({ transactions }) => {
     .filter((transaction) => transaction.amount < 0)
     .reduce((total, transaction) => total + transaction.amount, 0);
 
-  // Prepare data for the bar chart
+
   const barChartData = [
     { name: 'Incoming', amount: totalIncoming },
     { name: 'Outgoing', amount: totalOutgoing },
   ];
 
-  // Prepare data for the pie chart
+
   const pieChartData = transactions.map((transaction) => ({
     name: transaction.title,
     value: Math.abs(transaction.amount),
   }));
 
-  // Define colors for the pie chart
+
   const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
   return (

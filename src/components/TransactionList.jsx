@@ -34,25 +34,6 @@ const TransactionList = () => {
     }
   };
 
-
-  const totalIncoming = transactions
-    .filter((transaction) => transaction.amount > 0)
-    .reduce((total, transaction) => total + Number(transaction.amount), 0);
-
-  const totalOutgoing = transactions
-    .filter((transaction) => transaction.amount < 0)
-    .reduce((total, transaction) => total + Number(transaction.amount), 0);
-
-  const handleTitleChange = (e) => {
-    setNewTransactionTitle(e.target.value);
-    setError('');
-  };
-
-  const handleAmountChange = (e) => {
-    setNewTransactionAmount(e.target.value);
-    setError('');
-  };
-
   const addTransaction = async () => {
     if (newTransactionTitle.trim() === '' || newTransactionAmount.trim() === '') {
       setError('Please enter a valid title and amount.');
@@ -81,7 +62,6 @@ const TransactionList = () => {
       console.error('Error adding transaction:', error);
     }
   };
-  
 
   const deleteTransaction = async (id) => {
     try {
@@ -93,7 +73,6 @@ const TransactionList = () => {
     }
   };
   
-
   const editTransactionItem = (transaction) => {
     setEditTransaction(transaction);
   };
@@ -115,7 +94,6 @@ const TransactionList = () => {
     }
   };
   
-
   const clearTransactions = async () => {
     try {
       for (const transaction of transactions) {
@@ -126,7 +104,24 @@ const TransactionList = () => {
       console.error('Error clearing transactions:', error);
     }
   };
-  
+
+  const totalIncoming = transactions
+    .filter((transaction) => transaction.amount > 0)
+    .reduce((total, transaction) => total + Number(transaction.amount), 0);
+
+  const totalOutgoing = transactions
+    .filter((transaction) => transaction.amount < 0)
+    .reduce((total, transaction) => total + Number(transaction.amount), 0);
+
+  const handleTitleChange = (e) => {
+    setNewTransactionTitle(e.target.value);
+    setError('');
+  };
+
+  const handleAmountChange = (e) => {
+    setNewTransactionAmount(e.target.value);
+    setError('');
+  };
   
 
   return (
@@ -230,12 +225,6 @@ const TransactionList = () => {
             Clear Transactions
           </button>
       </div>
-
-      
-      {/* <div className="mx-auto p-8 bg-gray-800 text-white rounded-3xl justify-center text-center shadow-2xl mt-8">
-        <DataVisual transactions={transactions} />
-      </div> */}
-
       {editTransaction && (
         <TransactionForm
           transaction={editTransaction}
