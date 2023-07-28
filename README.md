@@ -36,28 +36,35 @@ Budget Tracker is a web application that allows users to track their income and 
 
 ## Getting Started 
 1. Clone the repository:
-   git clone https://github.com/androrezkalla/Budget-Tracker.git
+   `git clone https://github.com/androrezkalla/Budget-Tracker.git`
    
 2. Install dependencies:
-   cd Budget-Tracker
-   npm install
+   `cd Budget-Tracker`
+   `npm install`
 
 3. Start the development server:
-   npm run dev
+   ```npm run dev```
 
 4. Start the database server:
-   json-server db.json
+   ```json-server db.json```
    
 6. Open your web browser and visit `http://localhost:3000` to view the application.
 
+## Contributing
+
+Contributions to the Budget Tracker are welcome! If you want to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b feature-name`.
+3. Make your changes and commit them: `git commit -m "Add some feature"`.
+4. Push the changes to your branch: `git push origin feature-name`.
+5. Submit a pull request.
+
+Please ensure your code follows the project's coding conventions and has appropriate documentation.
 
 ## License
 
 [MIT License](https://opensource.org/licenses/MIT)
 
-## Acknowledgements
 
-- [React](https://reactjs.org/)
-- [Chart.js](https://www.chartjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
 
