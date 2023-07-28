@@ -2,11 +2,10 @@
 
 Budget Tracker is a web application that allows users to track their income and expenses. It provides a simple and intuitive interface for managing transactions and visualizing financial data.
 
-## Deployment
+## Demo
 
-The application is deployed on Vercel. You can access it at:
 
-[https://budget-tracker-androrezkalla.vercel.app/](https://budget-tracker-androrezkalla.vercel.app/)
+![Alt Text](https://i.gyazo.com/b6d625e2a4f7ad459f065177a2f6b87f.gif)
 
 ## Features
 
@@ -45,8 +44,11 @@ The application is deployed on Vercel. You can access it at:
 
 3. Start the development server:
    npm run dev
+
+4. Start the database server:
+   json-server db.json
    
-4. Open your web browser and visit `http://localhost:3000` to view the application.
+6. Open your web browser and visit `http://localhost:3000` to view the application.
 
 
 ## License
